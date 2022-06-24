@@ -24,8 +24,14 @@ public class Tester {
                     prompt.addBook();
                     break;
                 case 3:
+                    prompt.removeBook();
+                    break;
                 case 4:
+                    prompt.viewBookOptions();
+                    break;
                 case 5:
+                    prompt.viewBookOptions();
+                case 6:
                     running = false;
                     break;
             }

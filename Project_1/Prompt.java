@@ -31,7 +31,8 @@ public class Prompt {
         System.out.println("2. Add a book");
         System.out.println("3. Remove a book");
         System.out.println("4. Update a book");
-        System.out.println("5. Exit");
+        System.out.println("5. View book info");
+        System.out.println("6. Exit");
 
         System.out.println("Please enter the number of the option you would like to perform: ");
     }
@@ -40,19 +41,19 @@ public class Prompt {
         for (int i = 0; i < books.size(); i++) {
             System.out.printf("%o. %s%n", i + 1, books.get(i));
         }
-
+        /*
         System.out.println("\nWould you like to view more options? Y/N: ");
-        //Scanner menu = new Scanner(System.in);
         String input = userInput.next();
 
         if (input.equalsIgnoreCase("y")) {
             viewBookOptions();
         }
+        */
     }
 
     public void viewBookOptions() {
+        viewBooks();
         System.out.println("Enter the line number of the book you would like to edit (Enter 0 to exit): ");
-        //Scanner menu = new Scanner(System.in);
         int input = userInput.nextInt();
 
         if (input > 0 && input <= books.size()) {
@@ -67,7 +68,6 @@ public class Prompt {
     }
 
     public void editBookInfo(Book book) {
-        //Scanner menu = new Scanner(System.in);
         book.printInfo();
         System.out.printf("Pick the attribute line number you would like to edit for %s (Enter 0 to exit):%n", book.getTitle());
 
@@ -109,7 +109,6 @@ public class Prompt {
 
         books.set(input - 1, book);
         System.out.println("Would you like to make another edit? Y/N ");
-        //Scanner subMenu = new Scanner(System.in);
 
         String editAgain = userInput.nextLine();
 
@@ -119,30 +118,40 @@ public class Prompt {
     }
 
     public void addBook() {
-        //Scanner userInput = new Scanner(System.in);
+
+        Scanner input = new Scanner(System.in);
 
         System.out.println("Title: ");
-        String title = userInput.nextLine();
+        String title = input.nextLine();
         System.out.println("Author: ");
-        String author = userInput.nextLine();
+        String author = input.nextLine();
 
         System.out.println("Genre: ");
-        String genre = userInput.nextLine();
+        String genre = input.nextLine();
         System.out.println("ISBN: ");
-        String isbn = userInput.nextLine();
+        String isbn = input.nextLine();
 
         System.out.println("Price: ");
-        double price = userInput.nextDouble();
+        double price = input.nextDouble();
         System.out.println("Pages Read: ");
-        int pagesRead = userInput.nextInt();
+        int pagesRead = input.nextInt();
 
         System.out.println("Total Pages: ");
-        int totalPages = userInput.nextInt();
+        int totalPages = input.nextInt();
 
         books.add(new Book(title, author, genre, isbn, price, pagesRead, totalPages));
     }
 
     public void removeBook() {
+        viewBooks();
+        System.out.println("Enter the line number of the book you would like to remove: ");
+        int input = userInput.nextInt();
+
+        if (input > 0 && input <= books.size()) {
+            books.remove(input - 1);
+        } else if (input == 0) {
+            return;
+        }
 
     }
 
